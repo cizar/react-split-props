@@ -1,6 +1,6 @@
 {
   "name": "react-split-props",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Breaks props into separate objects",
   "main": "lib/react-split-props.js",
   "scripts": {
