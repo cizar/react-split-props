@@ -1,15 +1,18 @@
-const createNewObject = () => ({});
-
-const split = (object, ...args) => {
-  const result = Array.from({length: args.length + 1}).map(createNewObject);
-  for (let [key, value] of Object.entries(object)) {
-    let index = args.findIndex((paths) => paths.includes(key));
-    if (index < 0) {
-      index = args.length;
+const splitProps = (props, ...args) => {
+  const result = [];
+  const mapping = args.reduce((accum, defs, index) => {
+    for (let def of defs) {
+      const [name, alias] = def.split(':');
+      accum[name] = {name: alias || name, index};
     }
-    result[index][key] = value;
+    return accum;
+  }, {});
+  for (let [key, value] of Object.entries(props)) {
+    const def = mapping[key];
+    const [index, name] = def ? [def.index, def.name] : [args.length, key];
+    result[index] = {...result[index], [name]: value};
   }
   return result;
 };
 
-export default split;
+export default splitProps;

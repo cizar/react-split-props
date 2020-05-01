@@ -38,3 +38,33 @@ Then you can use it like this...
     onPres={() => null}
     numberOfLines={2} />
 ```
+
+Props aliases are allowed...
+
+```js
+function MyButton({text, ...props}) {
+  const [touchableProps, textProps, rest] = splitProps(props,
+    ['containerStyle:style', 'onPress', 'disabled'],
+    ['textStyle:style', 'numberOfLines' 'ellipsizeMode'],
+  );
+  return (
+    <View {...rest}>
+      <TouchableWithoutFeedback {...containerStyle}>
+        <Text {...textProps}>
+          {text}
+        </Text>
+      </TouchableWithoutFeedback>
+    </View>
+  );
+}
+```
+
+Then simply use as follows...
+
+```js
+  <MyButton
+    title="Accept"
+    style={{...}}
+    containerStyle={{...}}
+    textStyle={{...}} />
+```
