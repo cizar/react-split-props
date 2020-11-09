@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "Breaks props into separate objects",
   "main": "lib/react-split-props.js",
+  "types": "types/react-split-props.d.ts",
   "scripts": {
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib",
